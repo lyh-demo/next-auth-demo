@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/unstorage-adapter": "^2.4.2",
     "next": "14.2.5",
     "next-auth": "^5.0.0-beta.20",
     "react": "^18",
     "react-dom": "^18",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "unstorage": "^1.10.2"
   },
   "devDependencies": {
     "@types/node": "^20",

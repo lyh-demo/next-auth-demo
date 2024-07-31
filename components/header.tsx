@@ -16,9 +16,6 @@ export default function Header() {
                             className="min-w-8"
                         />
                     </Link>
-                    <Link href="/api-example">
-                        Route Handler Example
-                    </Link>
                 </div>
                 <UserButton />
             </div>

@@ -15,7 +15,7 @@ export default async function UserButton() {
                     "https://source.boringavatars.com/marble/120"
                 }
                 alt={session.user.name ?? ""}
-                className="w-8 h-8"
+                className="w-8 h-8 rounded-full"
             />
             <SignOut />
         </div>

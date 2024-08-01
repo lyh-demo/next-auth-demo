@@ -8,7 +8,19 @@ const storage = createStorage();
 export const { handlers, auth, signIn, signOut } = NextAuth({
     theme: { logo: "https://authjs.dev/img/logo-sm.png" },
     adapter: UnstorageAdapter(storage),
-    providers: [GitHub],
+    providers: [
+        GitHub({
+            async profile(profile) {
+                return {
+                    id: profile.id.toString(),
+                    username: profile.login,
+                    name: profile.name,
+                    email: profile.email,
+                    image: profile.avatar_url
+                };
+            }
+        })
+    ],
     callbacks: {
         jwt({ token }) {
             return token;

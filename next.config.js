@@ -12,7 +12,13 @@ module.exports = {
             hostname: 'source.boringavatars.com',
             port: '',
             pathname: '/marble/**',
-        }
+        },
+        {
+          protocol: 'https',
+          hostname: 'authjs.dev',
+          port: '',
+          pathname: '/img/**',
+      },
       ],
     },
   }

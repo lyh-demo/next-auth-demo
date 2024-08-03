@@ -1,5 +1,6 @@
 import Link from "next/link";
 import packageJSON from "next-auth/package.json";
+import Image from "next/image";
 
 export default function Footer() {
     return (
@@ -9,10 +10,12 @@ export default function Footer() {
                 <Link href="https://www.npmjs.com/package/next-auth">NPM</Link>
             </div>
             <div className="flex gap-2 justify-start items-center">
-                <img 
+                <Image 
                     alt="Logo" 
                     src="https://authjs.dev/img/logo-sm.png" 
-                    className="size-5" 
+                    className="size-5"
+                    width={16}
+                    height={16} 
                 />
                 <Link href="https://npmjs.org/package/next-auth">{packageJSON.version}</Link>
             </div>

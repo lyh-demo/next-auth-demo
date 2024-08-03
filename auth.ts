@@ -2,11 +2,23 @@ import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
 import { UnstorageAdapter } from "@auth/unstorage-adapter";
 import { createStorage } from "unstorage";
+import "next-auth/jwt";
+
+declare module "next-auth" {
+    interface Session {
+        accessToken?: string
+    }
+}
+
+declare module "next-auth/jwt" {
+    interface JWT {
+        accessToken?: string
+    }
+}
 
 const storage = createStorage();
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-    theme: { logo: "https://authjs.dev/img/logo-sm.png" },
     adapter: UnstorageAdapter(storage),
     providers: [
         GitHub({
@@ -21,12 +33,22 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             }
         })
     ],
+    session: {
+        strategy: "jwt",
+    },
     callbacks: {
-        jwt({ token }) {
+        jwt({ token, account }) {
+            if (account) {
+                token.accessToken = account.access_token;
+            }
             return token;
         },
-        session({ session }) {
+        async session({ session, token }) {
+            if (token?.accessToken) {
+                session.accessToken = token.accessToken;
+            }
             return session;
         }
-    }
+    }, 
+    debug: process.env.NODE_ENV !== "production" ? true : false
 });
